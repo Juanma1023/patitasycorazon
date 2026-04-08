@@ -367,6 +367,9 @@ function enviarCita() {
   var nombre = document.getElementById("f-nombre").value.trim();
   var telefono = document.getElementById("f-telefono").value.trim();
   var mascota = document.getElementById("f-mascota").value.trim();
+  var especie = document.getElementById("f-especie").value.trim();
+  var servicio = document.getElementById("f-servicio").value.trim();
+  var mensaje = document.getElementById("f-mensaje").value.trim();
 
   if (!nombre || !telefono || !mascota) {
     mostrarToast("Completa los datos");
