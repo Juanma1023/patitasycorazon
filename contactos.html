@@ -1,0 +1,108 @@
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
+
+<nav class="nav">
+  <div class="logo">
+    <div class="logo-icon">
+      <svg class="logo-paw" viewBox="0 0 24 24">
+        <ellipse cx="7" cy="4.5" rx="2" ry="2.5"/>
+        <ellipse cx="13" cy="3.5" rx="2" ry="2.5"/>
+        <ellipse cx="4" cy="10.5" rx="2" ry="2.5"/>
+        <ellipse cx="16" cy="10.5" rx="2" ry="2.5"/>
+        <path d="M10 9c-3 0-6 3-5 7 0.5 2 2 4 5 4s4.5-2 5-4c1-4-2-7-5-7z"/>
+      </svg>
+    </div>
+    <div>
+      <div class="logo-text">Patitas &amp; Corazón</div>
+      <div class="logo-sub">Veterinaria independiente</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">Inicio</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="sobre.html">Sobre mí</a>
+    <a href="testimonios.html">Testimonios</a>
+    <a href="contacto.html">Contacto</a>
+  </div>
+  <button class="nav-cta" onclick="location.href='contacto.html'">Agendar ahora</button>
+</nav>
+
+ <section id="contacto" class="section section-alt">
+ <p class="section-title">Agenda tu cita</p>
+  <p class="section-sub">Cuéntanos sobre tu mascota y nos pondremos en contacto pronto</p>
+  <div class="cita-box">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Tu nombre</label>
+        <input id="f-nombre" type="text" placeholder="Ej: María López">
+      </div>
+      <div class="form-group">
+        <label>WhatsApp / Teléfono</label>
+        <input id="f-telefono" type="text" placeholder="+57 300 000 0000">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nombre de tu mascota</label>
+        <input id="f-mascota" type="text" placeholder="Ej: Copito">
+      </div>
+      <div class="form-group">
+        <label>Especie</label>
+        <select id="f-especie">
+          <option>Perro</option>
+          <option>Gato</option>
+          <option>Otro</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Servicio que necesitas</label>
+      <select id="f-servicio">
+        <option>Consulta general</option>
+        <option>Vacunación</option>
+        <option>Control de peso</option>
+        <option>Atención domiciliaria</option>
+        <option>Plan de bienestar</option>
+        <option>Otro</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Mensaje adicional (opcional)</label>
+      <textarea id="f-mensaje" placeholder="Cuéntanos algo sobre tu mascota o el motivo de la consulta..."></textarea>
+    </div>
+    <button class="btn-submit" id="btn-enviar" onclick="enviarCita()">Solicitar cita</button>
+    <div class="toast" id="toast"></div>
+  </div>
+</section>
+
+<!-- BOTON WHATSAPP -->
+<a href="https://wa.me/573000000000?text=Hola,%20quiero%20agendar%20una%20cita"
+target="_blank" class="wsp-float">💬</a>
+
+ <div class="contact-strip">
+  <div class="contact-item">
+    <span class="contact-label">WhatsApp</span>
+    <span class="contact-value">+57 300 000 0000</span>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">Correo</span>
+    <span class="contact-value">hola@patitasycorazon.com</span>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">Horario</span>
+    <span class="contact-value">Lun – Sáb · 8am a 6pm</span>
+  </div>
+  <div class="contact-item">
+    <span class="contact-label">Ubicación</span>
+    <span class="contact-value">Antioquia, Colombia</span>
+  </div>
+</div>
+
+<footer class="footer">
+  <span class="footer-logo">Patitas &amp; Corazón</span>
+  <span>© 2026 · Hecho con amor para tus mascotas</span>
+  <span style="color:#7F77DD;">Veterinaria independiente</span>
+</footer>
+
+<a href="https://wa.me/573000000000?text=Hola,%20quiero%20agendar"
+target="_blank" class="wsp-float">💬</a>
