@@ -1,378 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --sky: #B5D4F4; --sky-dark: #185FA5; --sky-mid: #378ADD;
-    --lila: #CECBF6; --lila-dark: #534AB7; --lila-mid: #7F77DD;
-    --lila-light: #EEEDFE; --white: var(--color-background-primary);
-    --text: var(--color-text-primary); --text2: var(--color-text-secondary);
-    --border: var(--color-border-tertiary);
-  }
-  .nav { background: var(--white); border-bottom: 0.5px solid var(--border); padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; }
-  .logo { display: flex; align-items: center; gap: 10px; }
-  .logo-icon { width: 38px; height: 38px; background: #B5D4F4; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-  .logo-paw { width: 22px; height: 22px; fill: #185FA5; }
-  .logo-text { font-size: 17px; font-weight: 500; color: #185FA5; }
-  .logo-sub { font-size: 11px; color: #7F77DD; }
-  .nav-links { display: flex; gap: 24px; }
-  .nav-links a { font-size: 13px; color: var(--text2); text-decoration: none; cursor: pointer; }
-  .nav-links a:hover { color: #185FA5; }
-  .nav-cta { background: #B5D4F4; color: #0C447C; border: none; border-radius: 20px; padding: 8px 18px; font-size: 13px; cursor: pointer; font-weight: 500; }
-  .hero { background: #EEEDFE; padding: 56px 48px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
-  .hero-tag { display: inline-block; background: #B5D4F4; color: #0C447C; border-radius: 20px; padding: 4px 14px; font-size: 12px; font-weight: 500; margin-bottom: 16px; }
-  .hero h1 { font-size: 30px; font-weight: 500; color: #3C3489; line-height: 1.3; margin-bottom: 14px; }
-  .hero p { font-size: 15px; color: #534AB7; line-height: 1.7; margin-bottom: 24px; }
-  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn-primary { background: #378ADD; color: #fff; border: none; border-radius: 24px; padding: 11px 24px; font-size: 14px; cursor: pointer; font-weight: 500; }
-  .btn-secondary { background: var(--white); color: #534AB7; border: 1.5px solid #7F77DD; border-radius: 24px; padding: 11px 24px; font-size: 14px; cursor: pointer; font-weight: 500; }
-  .section { padding: 48px 32px; }
-  .section-alt { background: #E6F1FB; }
-  .section-title { font-size: 22px; font-weight: 500; color: #185FA5; text-align: center; margin-bottom: 8px; }
-  .section-sub { font-size: 14px; color: var(--text2); text-align: center; margin-bottom: 32px; }
-  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; max-width: 800px; margin: 0 auto; }
-  .service-card { background: var(--white); border: 0.5px solid #B5D4F4; border-radius: 16px; padding: 24px 20px; text-align: center; }
-  .service-icon { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; }
-  .service-card h3 { font-size: 15px; font-weight: 500; color: #0C447C; margin-bottom: 6px; }
-  .service-card p { font-size: 13px; color: var(--text2); line-height: 1.6; }
-  .about-wrap { display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: center; max-width: 720px; margin: 0 auto; }
-  .avatar { width: 110px; height: 110px; border-radius: 50%; background: #B5D4F4; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 500; color: #0C447C; border: 3px solid #7F77DD; flex-shrink: 0; }
-  .about-text h2 { font-size: 20px; font-weight: 500; color: #185FA5; margin-bottom: 6px; }
-  .about-badge { display: inline-block; background: #EEEDFE; color: #534AB7; border-radius: 12px; padding: 3px 12px; font-size: 12px; margin-bottom: 12px; }
-  .about-text p { font-size: 14px; color: var(--text2); line-height: 1.7; }
-  .about-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
-  .chip { background: #E6F1FB; color: #185FA5; border-radius: 16px; padding: 4px 12px; font-size: 12px; }
-  .cita-box { background: var(--white); border: 0.5px solid #CECBF6; border-radius: 20px; padding: 40px 32px; max-width: 560px; margin: 0 auto; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
-  .form-group label { font-size: 12px; color: var(--text2); font-weight: 500; }
-  .form-group input, .form-group select, .form-group textarea { border: 0.5px solid #B5D4F4; border-radius: 10px; padding: 10px 14px; font-size: 14px; color: var(--text); background: var(--color-background-secondary); outline: none; font-family: var(--font-sans); }
-  .form-group textarea { resize: none; height: 80px; }
-  .btn-submit { width: 100%; background: #378ADD; color: #fff; border: none; border-radius: 24px; padding: 13px; font-size: 15px; font-weight: 500; cursor: pointer; margin-top: 8px; transition: opacity 0.2s; }
-  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-  .toast { display: none; margin-top: 16px; padding: 14px 18px; border-radius: 12px; font-size: 14px; text-align: center; }
-  .toast.success { background: #EAF3DE; color: #27500A; display: block; }
-  .toast.error { background: #FCEBEB; color: #791F1F; display: block; }
-  .testimonios { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; max-width: 800px; margin: 0 auto; }
-  .testi-card { background: var(--white); border: 0.5px solid #CECBF6; border-radius: 16px; padding: 20px; }
-  .stars { color: #378ADD; font-size: 13px; margin-bottom: 8px; letter-spacing: 2px; }
-  .testi-card p { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 12px; }
-  .testi-name { font-size: 13px; color: #185FA5; font-weight: 500; }
-  .testi-pet { font-size: 11px; color: #7F77DD; }
-  .contact-strip { background: #185FA5; padding: 32px; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
-  .contact-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-  .contact-label { font-size: 11px; color: #85B7EB; }
-  .contact-value { font-size: 14px; color: #fff; font-weight: 500; }
-  .footer { background: var(--white); border-top: 0.5px solid var(--border); padding: 20px 32px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text2); }
-  .footer-logo { color: #185FA5; font-weight: 500; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+:root {
+  --sky: #B5D4F4; --sky-dark: #185FA5; --sky-mid: #378ADD;
+  --lila: #CECBF6; --lila-dark: #534AB7; --lila-mid: #7F77DD;
+  --lila-light: #EEEDFE; --white: #fff;
+  --text: #222; --text2: #666;
+  --border: #eee;
+}
+
+/* NAV */
+.nav {
+  background: var(--white);
+  border-bottom: 0.5px solid var(--border);
+  padding: 14px 32px;
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-links { display: flex; gap: 20px; }
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 13px;
+  color: var(--text2);
+}
+
+.nav-links a:hover { color: #185FA5; }
+
+.nav-cta {
+  background: #378ADD;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 18px;
+  cursor: pointer;
+}
+
+/* HERO */
+.hero {
+  background: #EEEDFE;
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.hero h1 { color: #3C3489; }
+
+.btn-primary, .btn-secondary {
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #378ADD;
+  color: white;
+  border: none;
+}
+
+.btn-secondary {
+  border: 1px solid #7F77DD;
+  background: white;
+}
+
+/* SECCIONES */
+.section { padding: 60px 30px; text-align: center; }
+.section-alt { background: #E6F1FB; }
+
+section { scroll-margin-top: 80px; }
+
+/* FORM */
+.cita-box {
+  max-width: 720px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.form-group { margin-bottom: 12px; text-align: left; }
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.btn-submit {
+  width: 100%;
+  background: #378ADD;
+  color: white;
+  padding: 12px;
+  border-radius: 20px;
+  border: none;
+}
+
+/* WHATSAPP FLOAT */
+.wsp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  font-size: 22px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  z-index: 999;
+}
+
+.toast { margin-top: 10px; text-align: center; }
+
 </style>
+</head>
 
-<h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Página web Patitas y Corazón con formulario conectado a Google Sheets</h2>
+<body>
 
+<!-- NAV -->
 <nav class="nav">
-  <div class="logo">
-    <div class="logo-icon">
-      <svg class="logo-paw" viewBox="0 0 24 24">
-        <ellipse cx="7" cy="4.5" rx="2" ry="2.5"/>
-        <ellipse cx="13" cy="3.5" rx="2" ry="2.5"/>
-        <ellipse cx="4" cy="10.5" rx="2" ry="2.5"/>
-        <ellipse cx="16" cy="10.5" rx="2" ry="2.5"/>
-        <path d="M10 9c-3 0-6 3-5 7 0.5 2 2 4 5 4s4.5-2 5-4c1-4-2-7-5-7z"/>
-      </svg>
-    </div>
-    <div>
-      <div class="logo-text">Patitas &amp; Corazón</div>
-      <div class="logo-sub">Veterinaria independiente</div>
-    </div>
-  </div>
+  <div><strong>Patitas & Corazón</strong></div>
   <div class="nav-links">
-    <a>Inicio</a><a>Servicios</a><a>Sobre mí</a><a>Testimonios</a><a>Contacto</a>
+    <a href="#inicio">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#sobre">Sobre mí</a>
+    <a href="#testimonios">Testimonios</a>
+    <a href="#contacto">Contacto</a>
   </div>
-  <button class="nav-cta">Agendar cita</button>
+  <button class="nav-cta" onclick="location.href='#contacto'">Agendar ahora</button>
 </nav>
 
-<section class="hero">
-  <div>
-    <div class="hero-tag">Veterinaria independiente</div>
-    <h1>El cuidado que tu mascota merece, con el amor que se lo da</h1>
-    <p>Consultas, vacunación y atención personalizada para perros y gatos. Aquí cada patita es tratada con amor y profesionalismo.</p>
-    <div class="hero-btns">
-      <button class="btn-primary">Agendar cita</button>
-      <button class="btn-secondary">Ver servicios</button>
-    </div>
-  </div>
-  <div style="display:flex;justify-content:center;align-items:center;">
-    <svg width="220" height="220" viewBox="0 0 220 220">
-      <circle cx="110" cy="110" r="100" fill="#B5D4F4"/>
-      <ellipse cx="90" cy="70" rx="14" ry="18" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1.5"/>
-      <ellipse cx="130" cy="65" rx="14" ry="18" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1.5"/>
-      <ellipse cx="110" cy="108" rx="40" ry="38" fill="#fff" stroke="#B5D4F4" stroke-width="1.5"/>
-      <ellipse cx="99" cy="98" rx="8" ry="10" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="1"/>
-      <ellipse cx="121" cy="98" rx="8" ry="10" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="1"/>
-      <circle cx="99" cy="98" r="4" fill="#185FA5"/>
-      <circle cx="121" cy="98" r="4" fill="#185FA5"/>
-      <circle cx="100" cy="97" r="1.5" fill="#fff"/>
-      <circle cx="122" cy="97" r="1.5" fill="#fff"/>
-      <ellipse cx="110" cy="114" rx="9" ry="6" fill="#F4C0D1"/>
-      <line x1="95" y1="116" x2="75" y2="122" stroke="#AFA9EC" stroke-width="1.2"/>
-      <line x1="95" y1="118" x2="73" y2="126" stroke="#AFA9EC" stroke-width="1.2"/>
-      <line x1="125" y1="116" x2="145" y2="122" stroke="#AFA9EC" stroke-width="1.2"/>
-      <line x1="125" y1="118" x2="147" y2="126" stroke="#AFA9EC" stroke-width="1.2"/>
-      <ellipse cx="70" cy="148" rx="14" ry="10" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="1"/>
-      <ellipse cx="150" cy="148" rx="14" ry="10" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="1"/>
-      <ellipse cx="95" cy="155" rx="18" ry="12" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="1"/>
-      <ellipse cx="125" cy="155" rx="18" ry="12" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="1"/>
-      <path d="M105 170 Q110 178 115 170" stroke="#E24B4A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-      <circle cx="60" cy="52" r="6" fill="#CECBF6"/>
-      <circle cx="168" cy="48" r="4" fill="#B5D4F4"/>
-      <circle cx="45" cy="140" r="5" fill="#F4C0D1"/>
-      <circle cx="175" cy="155" r="4" fill="#CECBF6"/>
-    </svg>
-  </div>
+<!-- HERO -->
+<section id="inicio" class="hero">
+  <h1>El cuidado que tu mascota merece 🐾</h1>
+  <p>Más de 100 mascotas atendidas con amor y profesionalismo</p>
+
+  <button class="btn-primary"
+  onclick="window.open('https://wa.me/573000000000?text=Hola,%20quiero%20agendar%20una%20cita','_blank')">
+  Agendar por WhatsApp
+  </button>
+
+  <button class="btn-secondary" onclick="location.href='#servicios'">
+  Ver servicios
+  </button>
+
+  <p style="font-size:12px; margin-top:10px; color:#666;">
+  Respuesta en menos de 10 minutos
+  </p>
 </section>
 
-<section class="section">
-  <p class="section-title">Nuestros servicios</p>
-  <p class="section-sub">Atención completa y especializada para el bienestar de tu compañero</p>
-  <div class="services-grid">
-    <div class="service-card">
-      <div class="service-icon" style="background:#E6F1FB;">
-        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-          <rect x="4" y="8" width="18" height="14" rx="4" fill="#B5D4F4"/>
-          <rect x="9" y="4" width="8" height="6" rx="2" fill="#378ADD"/>
-          <line x1="13" y1="11" x2="13" y2="19" stroke="#185FA5" stroke-width="2" stroke-linecap="round"/>
-          <line x1="9" y1="15" x2="17" y2="15" stroke="#185FA5" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <h3>Consulta general</h3>
-      <p>Evaluación completa del estado de salud de tu mascota con revisión física detallada.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon" style="background:#EEEDFE;">
-        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-          <rect x="4" y="10" width="10" height="6" rx="2" fill="#7F77DD"/>
-          <rect x="12" y="6" width="3" height="14" rx="1.5" fill="#AFA9EC"/>
-          <circle cx="13.5" cy="9" r="3" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
-          <path d="M18 13 L22 13" stroke="#7F77DD" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <h3>Vacunación</h3>
-      <p>Plan de vacunación personalizado según edad, raza y estilo de vida de tu mascota.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon" style="background:#E6F1FB;">
-        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-          <ellipse cx="10" cy="9" rx="4" ry="5" fill="#B5D4F4"/>
-          <ellipse cx="17" cy="8" rx="4" ry="5" fill="#B5D4F4"/>
-          <ellipse cx="7" cy="15" rx="3.5" ry="5" fill="#B5D4F4"/>
-          <ellipse cx="19" cy="15" rx="3.5" ry="5" fill="#B5D4F4"/>
-          <ellipse cx="13" cy="16" rx="6" ry="6" fill="#85B7EB"/>
-        </svg>
-      </div>
-      <h3>Control de peso</h3>
-      <p>Seguimiento nutricional y de condición corporal para una vida saludable y activa.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon" style="background:#EEEDFE;">
-        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-          <rect x="6" y="4" width="14" height="18" rx="3" fill="#CECBF6"/>
-          <line x1="9" y1="9" x2="17" y2="9" stroke="#534AB7" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="9" y1="13" x2="17" y2="13" stroke="#534AB7" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="9" y1="17" x2="14" y2="17" stroke="#AFA9EC" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <h3>Historial clínico</h3>
-      <p>Registro detallado de la salud de tu mascota para un seguimiento médico preciso.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon" style="background:#E6F1FB;">
-        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-          <circle cx="13" cy="10" r="6" fill="#B5D4F4"/>
-          <path d="M7 22 Q13 16 19 22" fill="#85B7EB"/>
-          <circle cx="10" cy="9" r="1.5" fill="#185FA5"/>
-          <circle cx="16" cy="9" r="1.5" fill="#185FA5"/>
-          <path d="M11 12 Q13 14 15 12" stroke="#185FA5" stroke-width="1" fill="none" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <h3>Atención domiciliaria</h3>
-      <p>Visita veterinaria en la comodidad de tu hogar para mascotas que prefieren no salir.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon" style="background:#EEEDFE;">
-        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-          <path d="M13 5 L15.5 10 L21 11 L17 15 L18 21 L13 18 L8 21 L9 15 L5 11 L10.5 10 Z" fill="#CECBF6" stroke="#7F77DD" stroke-width="1"/>
-        </svg>
-      </div>
-      <h3>Plan de bienestar</h3>
-      <p>Paquetes preventivos anuales con chequeos, vacunas y desparasitación incluidos.</p>
-    </div>
-  </div>
+<!-- SERVICIOS -->
+<section id="servicios" class="section">
+  <h2>Servicios</h2>
+  <p>Consulta, vacunación, control y más</p>
 </section>
 
-<section class="section section-alt">
-  <p class="section-title">Sobre mí</p>
-  <p class="section-sub">Conoce a la persona detrás del estetoscopio</p>
-  <div class="about-wrap">
-    <div class="avatar">V</div>
-    <div class="about-text">
-      <h2>Dra. Veterinaria</h2>
-      <span class="about-badge">Médica veterinaria independiente</span>
-      <p>Soy veterinaria apasionada por el bienestar animal con más de 5 años de experiencia atendiendo perros y gatos. Creo que cada mascota merece atención personalizada y que los dueños merecen claridad y confianza en cada consulta. Trabajo de forma independiente para poder dedicarle el tiempo que cada paciente necesita.</p>
-      <div class="about-chips">
-        <span class="chip">Medicina preventiva</span>
-        <span class="chip">Vacunología</span>
-        <span class="chip">Medicina interna</span>
-        <span class="chip">Urgencias</span>
-      </div>
-    </div>
-  </div>
+<!-- SOBRE -->
+<section id="sobre" class="section section-alt">
+  <h2>Sobre mí</h2>
+  <p>Veterinaria con experiencia y amor por los animales</p>
 </section>
 
-<section class="section">
-  <p class="section-title">Lo que dicen nuestros clientes</p>
-  <p class="section-sub">Familias que ya confían en Patitas &amp; Corazón</p>
-  <div class="testimonios">
-    <div class="testi-card">
-      <div class="stars">★★★★★</div>
-      <p>"Llevé a mi perrito Max por primera vez y quedé encantada. La doctora fue muy paciente y explica todo con claridad."</p>
-      <div class="testi-name">Valentina G.</div>
-      <div class="testi-pet">Mamá de Max, golden retriever</div>
-    </div>
-    <div class="testi-card">
-      <div class="stars">★★★★★</div>
-      <p>"La atención es increíble. Mi gata Michi estaba asustada pero la doctora supo manejarla con mucho amor."</p>
-      <div class="testi-name">Camila R.</div>
-      <div class="testi-pet">Mamá de Michi, gata persa</div>
-    </div>
-    <div class="testi-card">
-      <div class="stars">★★★★★</div>
-      <p>"Muy buena experiencia. El plan de vacunación fue clarísimo y el precio muy justo. ¡100% recomendada!"</p>
-      <div class="testi-name">Andrés M.</div>
-      <div class="testi-pet">Papá de Luna, beagle</div>
-    </div>
-  </div>
+<!-- TESTIMONIOS -->
+<section id="testimonios" class="section">
+  <h2>Testimonios</h2>
+  <p>Clientes felices</p>
 </section>
 
-<section class="section section-alt">
-  <p class="section-title">Agenda tu cita</p>
-  <p class="section-sub">Cuéntanos sobre tu mascota y nos pondremos en contacto pronto</p>
+<!-- CONTACTO -->
+<section id="contacto" class="section section-alt">
+  <h2>Agenda tu cita</h2>
+
   <div class="cita-box">
-    <div class="form-row">
-      <div class="form-group">
-        <label>Tu nombre</label>
-        <input id="f-nombre" type="text" placeholder="Ej: María López">
-      </div>
-      <div class="form-group">
-        <label>WhatsApp / Teléfono</label>
-        <input id="f-telefono" type="text" placeholder="+57 300 000 0000">
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label>Nombre de tu mascota</label>
-        <input id="f-mascota" type="text" placeholder="Ej: Copito">
-      </div>
-      <div class="form-group">
-        <label>Especie</label>
-        <select id="f-especie">
-          <option>Perro</option>
-          <option>Gato</option>
-          <option>Otro</option>
-        </select>
-      </div>
+    <div class="form-group">
+      <input id="f-nombre" placeholder="Nombre">
     </div>
     <div class="form-group">
-      <label>Servicio que necesitas</label>
-      <select id="f-servicio">
-        <option>Consulta general</option>
-        <option>Vacunación</option>
-        <option>Control de peso</option>
-        <option>Atención domiciliaria</option>
-        <option>Plan de bienestar</option>
-        <option>Otro</option>
-      </select>
+      <input id="f-telefono" placeholder="Teléfono">
     </div>
     <div class="form-group">
-      <label>Mensaje adicional (opcional)</label>
-      <textarea id="f-mensaje" placeholder="Cuéntanos algo sobre tu mascota o el motivo de la consulta..."></textarea>
+      <input id="f-mascota" placeholder="Mascota">
     </div>
-    <button class="btn-submit" id="btn-enviar" onclick="enviarCita()">Solicitar cita</button>
-    <div class="toast" id="toast"></div>
+
+    <button class="btn-submit" onclick="enviarCita()">
+      Solicitar cita
+    </button>
+
+    <p style="font-size:12px; text-align:center; margin-top:8px; color:#666;">
+    También puedes agendar por WhatsApp
+    </p>
+
+    <div id="toast"></div>
   </div>
 </section>
 
-<div class="contact-strip">
-  <div class="contact-item">
-    <span class="contact-label">WhatsApp</span>
-    <span class="contact-value">+57 300 000 0000</span>
-  </div>
-  <div class="contact-item">
-    <span class="contact-label">Correo</span>
-    <span class="contact-value">hola@patitasycorazon.com</span>
-  </div>
-  <div class="contact-item">
-    <span class="contact-label">Horario</span>
-    <span class="contact-value">Lun – Sáb · 8am a 6pm</span>
-  </div>
-  <div class="contact-item">
-    <span class="contact-label">Ubicación</span>
-    <span class="contact-value">Antioquia, Colombia</span>
-  </div>
-</div>
-
-<footer class="footer">
-  <span class="footer-logo">Patitas &amp; Corazón</span>
-  <span>© 2026 · Hecho con amor para tus mascotas</span>
-  <span style="color:#7F77DD;">Veterinaria independiente</span>
-</footer>
+<!-- BOTON WHATSAPP -->
+<a href="https://wa.me/573000000000?text=Hola,%20quiero%20agendar%20una%20cita"
+target="_blank" class="wsp-float">💬</a>
 
 <script>
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbzlM6eYr-4PTaGmLkZo8_VvX73MdwqhXLrZ3-_OMueMg6z85S3FIcsjoCevE8limYo/exec";
 
-function mostrarToast(msg, tipo) {
-  var t = document.getElementById("toast");
-  t.textContent = msg;
-  t.className = "toast " + tipo;
-  setTimeout(function() { t.className = "toast"; }, 5000);
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbwCVejhP0AQjXigvkVtplNJJRImCAwrBpqUfekzEBam91oXJmeJy58nAkwm1s4zp5kN/exec";
+
+function mostrarToast(msg) {
+  document.getElementById("toast").innerText = msg;
 }
 
 function enviarCita() {
+
   var nombre = document.getElementById("f-nombre").value.trim();
   var telefono = document.getElementById("f-telefono").value.trim();
   var mascota = document.getElementById("f-mascota").value.trim();
-  var especie = document.getElementById("f-especie").value;
-  var servicio = document.getElementById("f-servicio").value;
-  var mensaje = document.getElementById("f-mensaje").value.trim();
 
   if (!nombre || !telefono || !mascota) {
-    mostrarToast("Por favor completa tu nombre, teléfono y nombre de tu mascota.", "error");
+    mostrarToast("Completa los datos");
     return;
   }
 
-  var btn = document.getElementById("btn-enviar");
-  btn.disabled = true;
-  btn.textContent = "Enviando...";
-
-  var datos = { nombre: nombre, telefono: telefono, mascota: mascota, especie: especie, servicio: servicio, mensaje: mensaje };
+  var mensaje = `Hola, soy ${nombre}. Quiero agendar una cita para ${mascota}.`;
 
   fetch(SHEET_URL, {
     method: "POST",
     mode: "no-cors",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(datos)
-  })
-  .then(function() {
-    mostrarToast("¡Cita solicitada con exito! Te contactaremos pronto.", "success");
-    document.getElementById("f-nombre").value = "";
-    document.getElementById("f-telefono").value = "";
-    document.getElementById("f-mascota").value = "";
-    document.getElementById("f-mensaje").value = "";
-    btn.textContent = "Solicitar cita";
-    btn.disabled = false;
-  })
-  .catch(function() {
-    mostrarToast("Hubo un error al enviar. Intenta de nuevo o escríbenos por WhatsApp.", "error");
-    btn.textContent = "Solicitar cita";
-    btn.disabled = false;
+    body: JSON.stringify({ nombre, telefono, mascota })
   });
+
+  window.open("https://wa.me/573000000000?text=" + encodeURIComponent(mensaje), "_blank");
+
+  mostrarToast("Redirigiendo a WhatsApp...");
 }
+
 </script>
+
+</body>
+</html>
